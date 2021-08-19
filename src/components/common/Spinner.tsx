@@ -14,6 +14,7 @@ interface ISpinnerProps {
 }
 
 interface IWrapperProp {
+	//readonly 
 	readonly ['data-mask']: boolean;
 }
 

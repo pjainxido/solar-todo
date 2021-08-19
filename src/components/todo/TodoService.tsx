@@ -1,6 +1,6 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 
+// eslint-disable react-hooks/exhaustive-deps 
 export type Itodo = {
   id: number;
   text: string;
@@ -11,7 +11,7 @@ let initialTodos: Itodo[] = [];
 
 export const useTodo = () => {
   const [todoState, setTodoState] = useState(initialTodos);
-  var nextIdState = 0;
+  let nextIdState = 0;
 
   useEffect(() => {
     loadData();
@@ -48,7 +48,7 @@ export const useTodo = () => {
   const loadData = () => {
     let data = localStorage.getItem("todos");
     if (data === undefined) data = "";
-    initialTodos = JSON.parse(data!);
+    initialTodos = JSON.parse(data||'');
     if (initialTodos && initialTodos.length >= 1) {
       incrementNextId();
     }
