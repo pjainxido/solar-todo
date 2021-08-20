@@ -61,8 +61,9 @@ interface TodoItemProps {
 }
 
 const TodoItem = ({ toggleTodo, removeTodo, todo }: TodoItemProps) => {
-  const { done, text } = todo;
- 
+  const { done, text, deadLine } = todo;
+  const dateFormat= 'YYYY-MM-DD';
+
   const handleToggle = () => {
     toggleTodo(todo.id);
   };
@@ -78,6 +79,7 @@ const TodoItem = ({ toggleTodo, removeTodo, todo }: TodoItemProps) => {
         {done && <CheckOutlined />}
       </CheckCircle>
       <Text done={done}>{text}</Text>
+      {deadLine && <Text done={done}>{deadLine?.format(dateFormat)}</Text>}
       <Remove onClick={handleRemove}>
         <DeleteOutlined />
       </Remove>

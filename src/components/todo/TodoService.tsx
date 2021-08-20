@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
+import { Moment } from "moment";
 
 // eslint-disable react-hooks/exhaustive-deps
 export type Itodo = {
   id: number;
   text: string;
   done: boolean;
+  deadLine: Moment | null;
 };
 
 let initialTodos: Itodo[] = [];
@@ -29,8 +31,8 @@ export const useTodo = () => {
   const toggleTodo = (id: number) => {
     //@TODO
     setTodoState((prev) => {
-      const index = prev.findIndex((item) => item.id === id);
-      prev[index].done = !prev[index].done;
+      const matchIndex = prev.findIndex((item) => item.id === id);
+      prev[matchIndex].done = !prev[matchIndex].done;
       return [...prev];
     });
   };

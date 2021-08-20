@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { Moment } from "moment";
 import { PlusCircleOutlined } from "@ant-design/icons";
 import { Itodo } from "components/todo/TodoService";
+import TodoDatePicker from "./TodoDatePicker";
 
 const CircleButton = styled.button<{ open: boolean }>`
   background: #33bb77;
@@ -55,17 +57,16 @@ interface TodoCreateProps {
   incrementNextId: () => void;
 }
 
-const TodoCreate = ({
-  nextId,
-  createTodo,
-  incrementNextId
-}: TodoCreateProps) => {
+const TodoCreate = ({ nextId, createTodo, incrementNextId }: TodoCreateProps) => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
+  const [deadLine, setDeadLine] = useState<Moment | null>(null);
 
   const handleToggle = () => setOpen(!open);
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setValue(e.target.value);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value);
+  const handleDate = (date: Moment | null) => {
+    setDeadLine(date);
+  };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // 새로고침 방지
@@ -73,7 +74,8 @@ const TodoCreate = ({
     createTodo({
       id: nextId,
       text: value,
-      done: false
+      done: false,
+      deadLine: deadLine,
     });
     incrementNextId(); // nextId 하나 증가
 
@@ -91,7 +93,7 @@ const TodoCreate = ({
             onChange={handleChange}
             value={value}
           />
-
+          <TodoDatePicker handleDate={handleDate} />
           <CircleButton onClick={handleToggle} open={open}>
             <PlusCircleOutlined />
           </CircleButton>
