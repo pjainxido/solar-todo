@@ -16,7 +16,7 @@ export const useTodo = (user: string) => {
 
   useEffect(() => {
     loadData();
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     saveData();
@@ -47,7 +47,7 @@ export const useTodo = (user: string) => {
     );
   };
 
-  const loadData = () => {
+  const loadData = async() => {
     let data = localStorage.getItem(`todos_${user}`);
     if (data === undefined) data = "";
     initialTodos = JSON.parse(data || "");
