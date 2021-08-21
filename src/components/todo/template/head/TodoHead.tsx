@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { LogoutOutlined } from "@ant-design/icons";
 
 const TodoHeadBlock = styled.div`
   display: flex;
@@ -7,6 +8,13 @@ const TodoHeadBlock = styled.div`
   padding-top: 52px;
   padding-bottom: 24px;
   border-bottom: 3px solid #33bb77;
+`;
+
+const UserInfoText = styled.div`
+  font-size: 22px;
+  color: #f48024;
+  padding-top: 5px;
+  padding-right: 10px;
 `;
 
 const DateText = styled.div`
@@ -21,7 +29,19 @@ const DayText = styled.div`
   padding-top: 5px;
 `;
 
-const TodoHead = () => {
+const LogoutButton = styled.button`
+  padding: 0;
+  border: none;
+  background: none;
+  // font-size: 22px;
+`;
+
+interface todoHeadProps {
+  user: string;
+  logout: () => void;
+}
+
+const TodoHead = ({ user, logout }: todoHeadProps) => {
   const [dayString, setDayString] = useState("");
   const [dateString, setDateString] = useState("");
 
@@ -48,8 +68,12 @@ const TodoHead = () => {
 
   return (
     <TodoHeadBlock>
+      <UserInfoText>{`${user}'s TODO`}</UserInfoText>
       <DayText>{dayString}</DayText>
       <DateText>{dateString}</DateText>
+      <LogoutButton onClick={logout}>
+        <LogoutOutlined />
+      </LogoutButton>
     </TodoHeadBlock>
   );
 };

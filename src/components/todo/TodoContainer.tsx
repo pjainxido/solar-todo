@@ -5,7 +5,13 @@ import TodoList from "./template/list/TodoList";
 import TodoCreate from "./template/create/TodoCreate";
 import TodoFooter from "./template/footer/TodoFooter";
 
-const TodoContainer = () => {
+
+interface TodoContainerProps {
+  user: string;
+  logout: ()=>void;
+}
+
+const TodoContainer = ({user, logout}:TodoContainerProps) => {
   const {
     todoState,
     nextIdState,
@@ -13,12 +19,12 @@ const TodoContainer = () => {
     stateHadleTodo,
     removeTodo,
     createTodo,
-  } = useTodo();
+  } = useTodo(user);
   
   return (
     <>
       <TodoTemplate>
-        <TodoHead />
+        <TodoHead user={user} logout={logout} />
         <TodoCreate
           nextId={nextIdState}
           createTodo={createTodo}

@@ -1,4 +1,4 @@
-import { Modal } from "antd";
+import { Modal  } from "antd";
 
 export const warningModal = (title: string, content: string) => {
   Modal.warning({
@@ -6,3 +6,5 @@ export const warningModal = (title: string, content: string) => {
     content: content,
   });
 };
+
+

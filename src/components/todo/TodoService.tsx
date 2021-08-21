@@ -5,12 +5,12 @@ export type Itodo = {
   id: number;
   text: string;
   state: number;
-  deadLine: string| null;
+  deadLine: string | null;
 };
 
 let initialTodos: Itodo[] = [];
 
-export const useTodo = () => {
+export const useTodo = (user: string) => {
   const [todoState, setTodoState] = useState(initialTodos);
   const [nextIdState, setNextIdState] = useState(0);
 
@@ -27,16 +27,7 @@ export const useTodo = () => {
     setNextIdState((prev) => prev + 1);
   };
 
-  // const toggleTodo = (id: number) => {
-  //   //@TODO
-  //   setTodoState((prev) => {
-  //     const matchIndex = prev.findIndex((item) => item.id === id);
-  //     prev[matchIndex].done = !prev[matchIndex].done;
-  //     return [...prev];
-  //   });
-  // };
-
-  const stateHadleTodo= (id: number) => {
+  const stateHadleTodo = (id: number) => {
     setTodoState((prev) => {
       const matchIndex = prev.findIndex((item) => item.id === id);
       prev[matchIndex].state = (prev[matchIndex].state + 1) % 3;
@@ -58,7 +49,7 @@ export const useTodo = () => {
   };
 
   const loadData = () => {
-    let data = localStorage.getItem("todos");
+    let data = localStorage.getItem(`todos_${user}`);
     if (data === undefined) data = "";
     initialTodos = JSON.parse(data || "");
     if (initialTodos && initialTodos.length >= 1) {
@@ -69,7 +60,7 @@ export const useTodo = () => {
   };
 
   const saveData = () => {
-    localStorage.setItem("todos", JSON.stringify(todoState));
+    localStorage.setItem(`todos_${user}`, JSON.stringify(todoState));
   };
 
   return {
