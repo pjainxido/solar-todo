@@ -10,7 +10,7 @@ const TodoContainer = () => {
     todoState,
     nextIdState,
     incrementNextId,
-    toggleTodo,
+    stateHadleTodo,
     removeTodo,
     createTodo,
   } = useTodo();
@@ -25,7 +25,7 @@ const TodoContainer = () => {
           incrementNextId={incrementNextId}
         />
         <TodoList
-          toggleTodo={toggleTodo}
+          toggleTodo={stateHadleTodo}
           removeTodo={removeTodo}
           todos={todoState}
         />

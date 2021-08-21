@@ -36,7 +36,7 @@ export const useTodo = () => {
   //   });
   // };
 
-  const toggleTodo = (id: number) => {
+  const stateHadleTodo= (id: number) => {
     setTodoState((prev) => {
       const matchIndex = prev.findIndex((item) => item.id === id);
       prev[matchIndex].state = (prev[matchIndex].state + 1) % 3;
@@ -76,7 +76,7 @@ export const useTodo = () => {
     todoState,
     nextIdState,
     incrementNextId,
-    toggleTodo,
+    stateHadleTodo,
     removeTodo,
     createTodo,
   };
