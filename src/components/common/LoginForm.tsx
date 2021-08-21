@@ -7,14 +7,14 @@ interface LoginFormProps {
   configUser: (id: string, password: string) => void;
 }
 const ButtonWrapper = styled.div`
-  margin-top: 10px;
+  margin-top: 20px;
 `;
 
 const FormWrapper = styled(Form)`
-  padding: 15px;
+  padding: 20px;
 `;
 
-export const LoginForm = ({ configUser }: LoginFormProps) => {
+const LoginForm = ({ configUser }: LoginFormProps) => {
   const [id, onChangeId] = useInput<string>("");
   const [password, onChangePassword] = useInput<string>("");
 
@@ -50,3 +50,6 @@ export const LoginForm = ({ configUser }: LoginFormProps) => {
     </FormWrapper>
   );
 };
+
+
+export default LoginForm;
