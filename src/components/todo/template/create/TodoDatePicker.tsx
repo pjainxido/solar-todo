@@ -1,12 +1,13 @@
 import { DatePicker } from "antd";
 import { Moment } from "moment";
+import { ReactElement } from 'react';
 
-interface TodoDatePickerProps{
+interface TodoDatePickerProps {
   handleDate: (item: Moment | null) => void;
 }
 
-const TodoDatePicker = ({handleDate}: TodoDatePickerProps) => {
-  const onChange= (date: Moment | null) => {
+const TodoDatePicker = ({ handleDate }: TodoDatePickerProps): ReactElement => {
+  const onChange = (date: Moment | null) => {
     handleDate(date);
   };
   return (

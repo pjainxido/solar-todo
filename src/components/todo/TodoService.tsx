@@ -5,7 +5,7 @@ import { Moment } from "moment";
 export type Itodo = {
   id: number;
   text: string;
-  done: boolean;
+  state: number;
   deadLine: Moment | null;
 };
 
@@ -28,11 +28,19 @@ export const useTodo = () => {
     setNextIdState((prev) => prev + 1);
   };
 
+  // const toggleTodo = (id: number) => {
+  //   //@TODO
+  //   setTodoState((prev) => {
+  //     const matchIndex = prev.findIndex((item) => item.id === id);
+  //     prev[matchIndex].done = !prev[matchIndex].done;
+  //     return [...prev];
+  //   });
+  // };
+
   const toggleTodo = (id: number) => {
-    //@TODO
     setTodoState((prev) => {
       const matchIndex = prev.findIndex((item) => item.id === id);
-      prev[matchIndex].done = !prev[matchIndex].done;
+      prev[matchIndex].state = (prev[matchIndex].state + 1) % 3;
       return [...prev];
     });
   };

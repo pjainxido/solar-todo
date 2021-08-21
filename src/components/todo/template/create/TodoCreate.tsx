@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import moment, { Moment } from "moment";
 import { PlusCircleOutlined } from "@ant-design/icons";
-import { DATE_FORMAT } from "utils/constants";
+import { DATE_FORMAT, STATE} from "utils/constants";
 import { warningModal } from "components/common/Modal";
 import { Itodo } from "components/todo/TodoService";
 import TodoDatePicker from "./TodoDatePicker";
@@ -86,7 +86,7 @@ const TodoCreate = ({ nextId, createTodo, incrementNextId }: TodoCreateProps) =>
     createTodo({
       id: nextId,
       text: value,
-      done: false,
+      state: STATE.TODO,
       deadLine: deadLine,
     });
     incrementNextId(); // nextId 하나 증가

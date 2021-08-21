@@ -1,7 +1,8 @@
-import { CheckOutlined, DeleteOutlined } from "@ant-design/icons";
+import { CheckOutlined, DeleteOutlined, ClockCircleOutlined } from "@ant-design/icons";
 import { Itodo } from "components/todo/TodoService";
 import React from "react";
 import styled, { css } from "styled-components";
+import { STATE } from "utils/constants";
 
 const Remove = styled.div`
   display: flex;
@@ -23,7 +24,7 @@ const TodoItemBlock = styled.div`
   }
 `;
 
-const CheckCircle = styled.div<{ done: boolean }>`
+const CheckCircle = styled.div<{ state: number }>`
   width: 20px;
   height: 20px;
   border-radius: 16px;
@@ -34,24 +35,43 @@ const CheckCircle = styled.div<{ done: boolean }>`
   justify-content: center;
   margin-right: 20px;
   cursor: pointer;
-  ${(props) =>
-    props.done &&
-    css`
-      border: 1px solid #dddddd;
-      color: #dddddd;
-    `}
+
+  ${(props) => {
+    switch (props.state) {
+      case STATE.TODO:
+        return;
+      case STATE.INPROGRESS:
+        return css`
+          border: 1px solid #f48024;
+          color: #f48024;
+        `;
+      case STATE.DONE:
+        return css`
+          border: 1px solid #dddddd;
+          color: #dddddd;
+        `;
+    }
+  }}
 `;
 
-const Text = styled.div<{ done: boolean }>`
+const Text = styled.div<{ state: number}>`
   flex: 1;
   font-size: 16px;
   color: #119955;
-  ${(props) =>
-    props.done &&
-    css`
-      color: #ced4da;
-      text-decoration: line-through;
-    `}
+  ${(props) => {
+    switch (props.state) {
+      case STATE.INPROGRESS:
+        return css`
+          color: #f48024;
+          text-decoration: underline;
+        `;
+      case STATE.DONE:
+        return css`
+          color: #ced4da;
+          text-decoration: line-through;
+        `;
+    }
+  }}
 `;
 
 interface TodoItemProps {
@@ -61,10 +81,10 @@ interface TodoItemProps {
 }
 
 const TodoItem = ({ toggleTodo, removeTodo, todo }: TodoItemProps) => {
-  const { done, text, deadLine } = todo;
-  const dateFormat= 'YYYY-MM-DD';
+  const { text, deadLine, state } = todo;
+  const dateFormat = "YYYY-MM-DD";
 
-  const handleToggle = () => {
+  const handleState = () => {
     toggleTodo(todo.id);
   };
 
@@ -72,14 +92,25 @@ const TodoItem = ({ toggleTodo, removeTodo, todo }: TodoItemProps) => {
     removeTodo(todo.id);
   };
 
+  const renderStateIcon = (id: number) => {
+    switch (id) {
+      case STATE.TODO:
+        return;
+      case STATE.INPROGRESS:
+        return <ClockCircleOutlined />;
+      case STATE.DONE:
+        return <CheckOutlined />;
+    }
+  };
+
   return (
     <TodoItemBlock>
-      <div>{done}</div>
-      <CheckCircle done={done} onClick={handleToggle}>
-        {done && <CheckOutlined />}
+      <CheckCircle state={state} onClick={handleState}>
+        {renderStateIcon(state)}
+        {/* {done && <CheckOutlined />} */}
       </CheckCircle>
-      <Text done={done}>{text}</Text>
-      {deadLine && <Text done={done}>{deadLine?.format(dateFormat)}</Text>}
+      <Text state={state}>{text}</Text>
+      {deadLine && <Text state={state}>{deadLine?.format(dateFormat)}</Text>}
       <Remove onClick={handleRemove}>
         <DeleteOutlined />
       </Remove>

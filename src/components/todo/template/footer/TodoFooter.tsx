@@ -1,6 +1,7 @@
 import { Itodo } from "components/todo/TodoService";
 import React from "react";
 import styled from "styled-components";
+import { STATE } from 'utils/constants';
 
 const TodoFooterBlock = styled.div`
   display: flex;
@@ -21,7 +22,7 @@ interface HooksTodoHeadProps {
 }
 
 const Todofooter = ({ todos }: HooksTodoHeadProps) => {
-  const undoneTasks = todos.filter((todo) => !todo.done);
+  const undoneTasks = todos.filter((todo) => todo.state!==STATE.DONE);
   return (
     <TodoFooterBlock>
       <LeftText className="tasks-left">
