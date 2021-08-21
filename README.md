@@ -2,7 +2,7 @@
 
 ## 배포주소
 
-https://pjainxido.github.io/hayanmind-front-1/
+https://pjainxido.github.io/solar-todo/
 
 ## start
 
