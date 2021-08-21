@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.js": "/solar-todo/static/js/main.3406221f.chunk.js",
-    "main.js.map": "/solar-todo/static/js/main.3406221f.chunk.js.map",
+    "main.js": "/solar-todo/static/js/main.f1e09ced.chunk.js",
+    "main.js.map": "/solar-todo/static/js/main.f1e09ced.chunk.js.map",
     "runtime-main.js": "/solar-todo/static/js/runtime-main.dffe15a6.js",
     "runtime-main.js.map": "/solar-todo/static/js/runtime-main.dffe15a6.js.map",
     "static/css/2.7d7d1741.chunk.css": "/solar-todo/static/css/2.7d7d1741.chunk.css",
-    "static/js/2.78a6a26a.chunk.js": "/solar-todo/static/js/2.78a6a26a.chunk.js",
-    "static/js/2.78a6a26a.chunk.js.map": "/solar-todo/static/js/2.78a6a26a.chunk.js.map",
+    "static/js/2.dd51ea55.chunk.js": "/solar-todo/static/js/2.dd51ea55.chunk.js",
+    "static/js/2.dd51ea55.chunk.js.map": "/solar-todo/static/js/2.dd51ea55.chunk.js.map",
     "index.html": "/solar-todo/index.html",
     "static/css/2.7d7d1741.chunk.css.map": "/solar-todo/static/css/2.7d7d1741.chunk.css.map",
-    "static/js/2.78a6a26a.chunk.js.LICENSE.txt": "/solar-todo/static/js/2.78a6a26a.chunk.js.LICENSE.txt"
+    "static/js/2.dd51ea55.chunk.js.LICENSE.txt": "/solar-todo/static/js/2.dd51ea55.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.dffe15a6.js",
     "static/css/2.7d7d1741.chunk.css",
-    "static/js/2.78a6a26a.chunk.js",
-    "static/js/main.3406221f.chunk.js"
+    "static/js/2.dd51ea55.chunk.js",
+    "static/js/main.f1e09ced.chunk.js"
   ]
 }
