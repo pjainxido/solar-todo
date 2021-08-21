@@ -1,6 +1,6 @@
+import React from "react";
 import { CheckOutlined, DeleteOutlined, ClockCircleOutlined } from "@ant-design/icons";
 import { Itodo } from "components/todo/TodoService";
-import React from "react";
 import styled, { css } from "styled-components";
 import { STATE } from "utils/constants";
 
@@ -54,7 +54,7 @@ const CheckCircle = styled.div<{ state: number }>`
   }}
 `;
 
-const Text = styled.div<{ state: number}>`
+const Text = styled.div<{ state: number }>`
   flex: 1;
   font-size: 16px;
   color: #119955;
@@ -82,7 +82,6 @@ interface TodoItemProps {
 
 const TodoItem = ({ toggleTodo, removeTodo, todo }: TodoItemProps) => {
   const { text, deadLine, state } = todo;
-  const dateFormat = "YYYY-MM-DD";
 
   const handleState = () => {
     toggleTodo(todo.id);
@@ -110,7 +109,7 @@ const TodoItem = ({ toggleTodo, removeTodo, todo }: TodoItemProps) => {
         {/* {done && <CheckOutlined />} */}
       </CheckCircle>
       <Text state={state}>{text}</Text>
-      {deadLine && <Text state={state}>{deadLine?.format(dateFormat)}</Text>}
+      {deadLine && <Text state={state}>{deadLine}</Text>}
       <Remove onClick={handleRemove}>
         <DeleteOutlined />
       </Remove>

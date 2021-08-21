@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
-import { Moment } from "moment";
 
 // eslint-disable react-hooks/exhaustive-deps
 export type Itodo = {
   id: number;
   text: string;
   state: number;
-  deadLine: Moment | null;
+  deadLine: string| null;
 };
 
 let initialTodos: Itodo[] = [];

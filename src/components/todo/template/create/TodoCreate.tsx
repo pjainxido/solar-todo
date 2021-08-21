@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import moment, { Moment } from "moment";
 import { PlusCircleOutlined } from "@ant-design/icons";
-import { DATE_FORMAT, STATE} from "utils/constants";
+import { DATE_FORMAT, STATE } from "utils/constants";
 import { warningModal } from "components/common/Modal";
 import { Itodo } from "components/todo/TodoService";
 import TodoDatePicker from "./TodoDatePicker";
@@ -62,12 +62,13 @@ interface TodoCreateProps {
 const TodoCreate = ({ nextId, createTodo, incrementNextId }: TodoCreateProps) => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
-  const [deadLine, setDeadLine] = useState<Moment | null>(null);
+  const [deadLine, setDeadLine] = useState<string | null>(null);
 
   const handleToggle = () => setOpen(!open);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value);
   const handleDate = (date: Moment | null) => {
-    setDeadLine(date);
+    const dateString = date?.format(DATE_FORMAT);
+    if (dateString) setDeadLine(dateString);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -78,7 +79,7 @@ const TodoCreate = ({ nextId, createTodo, incrementNextId }: TodoCreateProps) =>
     }
     const curDate = moment().format(DATE_FORMAT);
 
-    if (moment(deadLine?.format(DATE_FORMAT)).isBefore(curDate)) {
+    if (moment(deadLine).isBefore(curDate)) {
       warningModal("WARN", "과거 날짜를 입력하셨습니다.");
       return;
     }
