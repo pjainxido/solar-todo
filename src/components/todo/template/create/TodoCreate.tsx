@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Moment } from "moment";
 import { PlusCircleOutlined } from "@ant-design/icons";
+import { warningModal } from "components/common/Modal";
 import { Itodo } from "components/todo/TodoService";
 import TodoDatePicker from "./TodoDatePicker";
 
@@ -70,6 +71,10 @@ const TodoCreate = ({ nextId, createTodo, incrementNextId }: TodoCreateProps) =>
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // 새로고침 방지
+    if (!value) {
+      warningModal("WARN", "할일을 입력해주세요");
+      return;
+    }
 
     createTodo({
       id: nextId,
