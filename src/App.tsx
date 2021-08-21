@@ -19,9 +19,9 @@ function App() {
   };
 
   const submitLoginForm = (id: string, password: string) => {
-    setIsLogged(true);
     if (configUser(id, password)) {
       setUser(id);
+      setIsLogged(true);
     }
   };
 
@@ -30,15 +30,15 @@ function App() {
     setIsLogged(false);
   };
 
-  const RenderLayout = (
-    <div>
-      <TodoContainer user={user} logout={userLogout} />
-    </div>
+  return (
+    <>
+      {isLogged ? (
+        <TodoContainer user={user} logout={userLogout} />
+      ) : (
+        <LoginForm configUser={submitLoginForm} />
+      )}
+    </>
   );
-
-
-  // return isLogged ? RenderLayout : <Spinner mask />;
-  return isLogged ? RenderLayout : <LoginForm configUser={submitLoginForm} />;
 }
 
 export default App;

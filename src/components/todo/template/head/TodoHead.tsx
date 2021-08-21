@@ -30,10 +30,14 @@ const DayText = styled.div`
 `;
 
 const LogoutButton = styled.button`
-  padding: 0;
   border: none;
   background: none;
-  // font-size: 22px;
+  font-size: 22px;
+  color: #119955;
+  cursor: pointer;
+  &:hover{
+    color: red;
+  }
 `;
 
 interface todoHeadProps {
@@ -71,7 +75,7 @@ const TodoHead = ({ user, logout }: todoHeadProps) => {
       <UserInfoText>{`${user}'s TODO`}</UserInfoText>
       <DayText>{dayString}</DayText>
       <DateText>{dateString}</DateText>
-      <LogoutButton onClick={logout}>
+      <LogoutButton onClick={logout} title='Log out'>
         <LogoutOutlined />
       </LogoutButton>
     </TodoHeadBlock>

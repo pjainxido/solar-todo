@@ -20,7 +20,6 @@ export const useTodo = (user: string) => {
 
   useEffect(() => {
     saveData();
-    console.log(todoState);
   }, [todoState]);
 
   const incrementNextId = () => {

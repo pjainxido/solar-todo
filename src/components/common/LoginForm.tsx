@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import styled from "styled-components";
 import { useInput } from "utils/hooks";
-import { Modal, Form, Input, Button } from "antd";
+import {  Form, Input, Button } from "antd";
 
 interface LoginFormProps {
   configUser: (id: string, password: string) => void;
