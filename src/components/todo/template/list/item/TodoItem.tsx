@@ -54,14 +54,9 @@ const CheckCircle = styled.div<{ state: number }>`
     }
   }}
 `;
-const Text = styled.div<{ state: number }>`
-  flex: 2;
-  font-size: 16px;
-  color: #119955;
-  overflow:hidden;
-  text-overflow: ellipsis;
-  ${(props) => {
-    switch (props.state) {
+
+const textStyleSyncState = (state:number)=>{
+    switch (state) {
       case STATE.INPROGRESS:
         return css`
           color: #f48024;
@@ -73,27 +68,23 @@ const Text = styled.div<{ state: number }>`
           text-decoration: line-through;
         `;
     }
-  }}
+}
+
+const Text = styled.div<{ state: number }>`
+  flex: 2;
+  font-size: 16px;
+  white-space:nowrap;
+  color: #119955;
+  overflow:hidden;
+  text-overflow: ellipsis;
+  ${(props) => textStyleSyncState(props.state)}
 `;
 
 const DateText = styled.div<{ state: number }>`
   flex: 1;
   font-size: 16px;
   color: #119955;
-  ${(props) => {
-    switch (props.state) {
-      case STATE.INPROGRESS:
-        return css`
-          color: #f48024;
-          text-decoration: underline;
-        `;
-      case STATE.DONE:
-        return css`
-          color: #ced4da;
-          text-decoration: line-through;
-        `;
-    }
-  }}
+  ${(props) => textStyleSyncState(props.state)}
 `;
 
 interface TodoItemProps {
@@ -126,14 +117,12 @@ const TodoItem = ({ toggleTodo, removeTodo, todo }: TodoItemProps) => {
 
   const checkDetail = () =>{
     detailModal(deadLine, text);
-
   }
 
   return (
     <TodoItemBlock>
       <CheckCircle state={state} onClick={handleState}>
         {renderStateIcon(state)}
-        {/* {done && <CheckOutlined />} */}
       </CheckCircle>
       <Text onClick={checkDetail} state={state}>{text}</Text>
       {deadLine && <DateText state={state}>{deadLine}</DateText>}
