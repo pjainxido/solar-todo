@@ -1,6 +1,7 @@
 import React from "react";
 import { CheckOutlined, DeleteOutlined, ClockCircleOutlined } from "@ant-design/icons";
 import { Itodo } from "components/todo/TodoService";
+import { detailModal } from 'components/common/Modal';
 import styled, { css } from "styled-components";
 import { STATE } from "utils/constants";
 
@@ -53,8 +54,29 @@ const CheckCircle = styled.div<{ state: number }>`
     }
   }}
 `;
-
 const Text = styled.div<{ state: number }>`
+  flex: 2;
+  font-size: 16px;
+  color: #119955;
+  overflow:hidden;
+  text-overflow: ellipsis;
+  ${(props) => {
+    switch (props.state) {
+      case STATE.INPROGRESS:
+        return css`
+          color: #f48024;
+          text-decoration: underline;
+        `;
+      case STATE.DONE:
+        return css`
+          color: #ced4da;
+          text-decoration: line-through;
+        `;
+    }
+  }}
+`;
+
+const DateText = styled.div<{ state: number }>`
   flex: 1;
   font-size: 16px;
   color: #119955;
@@ -102,14 +124,19 @@ const TodoItem = ({ toggleTodo, removeTodo, todo }: TodoItemProps) => {
     }
   };
 
+  const checkDetail = () =>{
+    detailModal(deadLine, text);
+
+  }
+
   return (
     <TodoItemBlock>
       <CheckCircle state={state} onClick={handleState}>
         {renderStateIcon(state)}
         {/* {done && <CheckOutlined />} */}
       </CheckCircle>
-      <Text state={state}>{text}</Text>
-      {deadLine && <Text state={state}>{deadLine}</Text>}
+      <Text onClick={checkDetail} state={state}>{text}</Text>
+      {deadLine && <DateText state={state}>{deadLine}</DateText>}
       <Remove onClick={handleRemove}>
         <DeleteOutlined />
       </Remove>

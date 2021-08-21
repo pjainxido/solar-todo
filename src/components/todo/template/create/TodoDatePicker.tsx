@@ -1,6 +1,6 @@
 import { DatePicker } from "antd";
 import { Moment } from "moment";
-import { ReactElement } from 'react';
+import { ReactElement } from "react";
 
 interface TodoDatePickerProps {
   handleDate: (item: Moment | null) => void;
@@ -12,7 +12,7 @@ const TodoDatePicker = ({ handleDate }: TodoDatePickerProps): ReactElement => {
   };
   return (
     <div>
-      <DatePicker onChange={onChange} />
+      <DatePicker onChange={onChange} size="large" />
     </div>
   );
 };

@@ -7,4 +7,11 @@ export const warningModal = (title: string, content: string) => {
   });
 };
 
+export const detailModal = (date: string|null , content: string) => {
+  Modal.info({
+    title: date || 'TODO',
+    content: content
+  })
+}
+
 
