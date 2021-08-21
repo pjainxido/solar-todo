@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Moment } from "moment";
+import moment, { Moment } from "moment";
 import { PlusCircleOutlined } from "@ant-design/icons";
+import { DATE_FORMAT } from "utils/constants";
 import { warningModal } from "components/common/Modal";
 import { Itodo } from "components/todo/TodoService";
 import TodoDatePicker from "./TodoDatePicker";
@@ -73,6 +74,12 @@ const TodoCreate = ({ nextId, createTodo, incrementNextId }: TodoCreateProps) =>
     e.preventDefault(); // 새로고침 방지
     if (!value) {
       warningModal("WARN", "할일을 입력해주세요");
+      return;
+    }
+    const curDate = moment().format(DATE_FORMAT);
+
+    if (moment(deadLine?.format(DATE_FORMAT)).isBefore(curDate)) {
+      warningModal("WARN", "과거 날짜를 입력하셨습니다.");
       return;
     }
 
